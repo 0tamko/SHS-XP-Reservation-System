@@ -1,9 +1,8 @@
 # Reservation System
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
 ## Trelllo
 For redirect to trello click [here](https://trello.com/b/gAz9jHht/reservation-system) !
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
 
 ## Development server
 
