@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon'; 
 import {MatTableModule} from '@angular/material/table'; 
 import {MatSortModule} from '@angular/material/sort'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +29,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatIconModule,
     MatTableModule,
     MatSortModule,
+    MatSnackBarModule,
     NoopAnimationsModule,
     //App routing Module MUST BE last!!
     AppRoutingModule

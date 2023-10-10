@@ -1,8 +1,8 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { Component, ViewChild,AfterViewInit } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { reservationVm } from 'src/models/reservationVm';
+import { MessageService } from 'src/shared/message.service';
 
 @Component({
   selector: 'app-reserve-vm',
@@ -22,7 +22,7 @@ export class ReserveVmComponent {
   ];
   dataSource = new MatTableDataSource(this.data);
 
-  constructor() {}
+  constructor(private message: MessageService) {}
 
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -31,4 +31,7 @@ export class ReserveVmComponent {
   }
 
   
+  test(){
+    this.message.message("test")
+  }
 }

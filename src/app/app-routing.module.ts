@@ -6,6 +6,8 @@ import { ReserveKojeComponent } from './reserve-koje/reserve-koje.component';
 import { ReserveVmComponent } from './reserve-vm/reserve-vm.component';
 
 const routes: Routes = [
+  {path: "", component: HomeComponent},
+  {path:"*",component:HomeComponent},
   {path:"home", component: HomeComponent},
   {path:"myvms", component: MyVirtualMachinesComponent},
   {path:"reservationkoje",component: ReserveKojeComponent},
