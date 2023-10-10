@@ -2,7 +2,9 @@
     background-color: white;
     width: inherit;
     margin: 1rem;
+    max-height: 90vh;
     max-width: 100%;
+    overflow: auto;
     
 
     table{
@@ -14,6 +16,20 @@
         }
         tr:not(.table-header):active {
             background: #efefef;
+        }
+
+        .function-buttons{
+            width: auto;
+            display: flex;
+            gap: 1rem;
+
+            .function-item{
+                color: gray;
+                transition: ease-in-out 200ms;
+            }
+            .function-item:hover{
+                color: black;
+            }
         }
     }
 }
