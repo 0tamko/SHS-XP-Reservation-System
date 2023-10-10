@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatTableModule} from '@angular/material/table'; 
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,8 +25,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     MatIconModule,
-    AppRoutingModule,
-    NoopAnimationsModule
+    MatTableModule,
+    NoopAnimationsModule,
+    //App routing Module MUST BE last!!
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

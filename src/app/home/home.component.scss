@@ -19,6 +19,7 @@
             margin: 5px; 
             background-color: white;
             box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+            transition: ease-in-out 200ms;
             .icon-and-label{
                 height: 80%;
                 .icon{
@@ -28,10 +29,10 @@
                     justify-content: center;
                     align-items: center;
                     text-align: center;
-                    font-size: 18px;
+                    font-size: 1.12rem;
                     font-weight: 500;
                     mat-icon{
-                        font-size: 100px;
+                        font-size: 4rem;
                         height: 50%;
                         width: 50%;
                     }
@@ -39,7 +40,7 @@
             }
             .status-label{
                 width: 90%;
-                margin: auto;
+                margin: 0.5rem auto ;
                 border-top: 1px solid lightgray;
                 height: 10%;
                 text-align: left;
@@ -48,8 +49,8 @@
             }
         }
         .box-wrapper-item:hover{
-
-            transition: ease-in-out 200ms;
+            transform: scale(1.01);
+            
             
             cursor: pointer;
         }

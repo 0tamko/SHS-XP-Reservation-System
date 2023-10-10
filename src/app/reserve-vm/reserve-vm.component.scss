@@ -1,0 +1,19 @@
+.content{
+    background-color: white;
+    width: inherit;
+    margin: 1rem;
+    max-width: 100%;
+    
+
+    table{
+        padding: 1rem;
+
+        tr:not(.table-header):hover {
+            background: whitesmoke;
+            cursor: pointer;
+        }
+        tr:not(.table-header):active {
+            background: #efefef;
+        }
+    }
+}
