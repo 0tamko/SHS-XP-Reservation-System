@@ -14,6 +14,8 @@ import { MyVirtualMachinesComponent } from './my-virtual-machines/my-virtual-mac
 import { ReserveVmComponent } from './reserve-vm/reserve-vm.component';
 import { ReserveKojeComponent } from './reserve-koje/reserve-koje.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ReservationDialogComponent } from './reserve-vm/reservation-dialog/reservation-dialog.component';
+import { InformationDialogComponent } from './reserve-vm/information-dialog/information-dialog.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     MyVirtualMachinesComponent,
     ReserveVmComponent,
-    ReserveKojeComponent
+    ReserveKojeComponent,
+    ReservationDialogComponent,
+    InformationDialogComponent
   ],
   imports: [
     BrowserModule,
