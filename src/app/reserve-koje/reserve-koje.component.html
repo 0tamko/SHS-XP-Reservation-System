@@ -1,3 +1,48 @@
 <div class="content" tabindex="0">
-    
+    <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8" >
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+        
+          <!-- Version Column -->
+          <ng-container matColumnDef="version">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by version"> Version </th>
+            <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+          </ng-container>
+        
+          <!-- State Column -->
+          <ng-container matColumnDef="remark">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by state"> Remark </th>
+            <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+          </ng-container>
+        
+          <!-- Uptime Column -->
+          <ng-container matColumnDef="currentlyReservedBy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by uptime"> Currently Reserved by </th>
+            <td mat-cell *matCellDef="let element"> {{element.owner}} </td>
+          </ng-container>
+
+           <!-- Owner Column -->
+           <ng-container matColumnDef="reservedTill">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by owner"> Reserved till </th>
+            <td mat-cell *matCellDef="let element"> {{element.reservedTill}} </td>
+          </ng-container>
+
+           <!-- Functions Column -->
+           <ng-container matColumnDef="functions">
+            <th mat-header-cell *matHeaderCellDef> Functions </th>
+            <td mat-cell *matCellDef="let element"> 
+                <div class="function-buttons">
+                    <div class="function-item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit_calendar"></mat-icon></div>
+                    <div class="function-item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="lock_open"></mat-icon></div>
+                    <div class="function-item" ><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="content_copy"></mat-icon></div>
+                </div> 
+            </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"  class="table-header"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 </div>
