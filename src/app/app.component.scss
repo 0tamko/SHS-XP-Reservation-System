@@ -1,4 +1,6 @@
 
+
+
     nav{
         display: flex;
         height: 100%;   
@@ -45,18 +47,41 @@
         
     }
     .right-side-wrapper{
+        display: flex;
+        align-items: center;
+
         a{
             text-decoration: none;
             margin: 0 1rem;
             color: gray;
             font-weight: 500;
-            height: 4.5rem
         }
     
         a:hover{
             transition: ease-in-out 200ms;
             color: black;
-        }   
+        } 
+        
+        .user-profile{
+            width: 2rem;
+            height: 2rem;
+            background-color: gainsboro;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .userName{
+                color: gray;
+                font-weight: 400;
+                transition: ease-in-out 200ms;
+            }
+            
+        }
+        .user-profile:hover{
+            .userName{
+                color: black;
+            }
+        }
     }
     }
 

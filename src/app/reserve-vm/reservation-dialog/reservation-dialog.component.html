@@ -1,0 +1,37 @@
+<div class="content">
+    <h1 class="vm-name">{{data.name}}</h1>    
+    
+    <div class="information-item">
+        <p>How to reserve virtual machine (VM):</p>
+        <ul>
+            <li>Set the date of the reservation end.</li>
+            <li>Set the time of the reservation end.</li>
+            <li>Choose if you want to set the VM at lock state.</li>
+        </ul>
+        <p class="info">You will find your reserved VM in "My virtual machines" page. 
+            Reservation will end automatically or you can unreserve it anytime. 
+            Also you can change VM's lock state anytime and it will be unlocked at the end of your reservation.
+        </p>
+    </div>
+
+    <div class="date-and-time-picker">
+        <input type="date">
+        <input type="date">
+    </div>
+    
+
+    <div class="checkboxes">
+        <div>
+            <input type="checkbox" id="allday">
+            <label for="allday">All day</label>
+        </div>
+        <div>
+            <input type="checkbox" id="lockvm">
+            <label for="lockvm">Lock the virtual machine</label>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="secondary-button" (click)="onCancelClick()">Cancel</button>
+        <button class="primary-button" mat-dialog-close cdkFocusInitial>Reserve</button>
+    </div>
+</div>
