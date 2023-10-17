@@ -5,7 +5,6 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog'; 
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +20,6 @@ import { InformationDialogComponent } from './reserve-vm/information-dialog/info
 
 @NgModule({
   declarations: [
-
     AppComponent,
     HomeComponent,
     MyVirtualMachinesComponent,
@@ -37,7 +35,6 @@ import { InformationDialogComponent } from './reserve-vm/information-dialog/info
     MatSortModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatDatepickerModule,
     NoopAnimationsModule,
     //App routing Module MUST BE last!!
     AppRoutingModule
