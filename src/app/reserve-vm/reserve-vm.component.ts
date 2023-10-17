@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { reservationVm } from 'src/models/reservationVm';
 import { MessageService } from 'src/shared/message.service';
 import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component';
+import { InformationDialogComponent } from './information-dialog/information-dialog.component';
 
 @Component({
   selector: 'app-reserve-vm',
@@ -26,7 +27,7 @@ export class ReserveVmComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'version', 'state', 'uptime','owner','functions'];
   data: reservationVm [] = [
-    {id: 1,name:"XP-VM-01", version: "eagle.va20a.release.si_daily2_20220318_0200", status: null ,state: "Running", uptime:"4d 04:09:32 " ,owner: "Allers, Stefan",isLocked: true },
+    {id: 1,name:"XP-VM-01", version: "eagle.va20a.release.si_daily2_20220318_0200", status: null ,state: "Running", uptime:"4d 04:09:32 " ,owner: "Bllers, Stefan",isLocked: true },
     {id: 2,name:"XP-VM-02", version: "eagle.va20b.release.si_daily2_20231010_0200", status: null ,state: "Running", uptime:"0d 00:00:00" ,owner: null,isLocked: false},
     {id: 3,name:"XP-VM-03", version: "eagle.va20b.release.si_daily2_20231010_0200", status: null ,state: "Running", uptime:"0d 00:00:00" ,owner: null,isLocked: false},
     {id: 4,name:"XP-VM-04", version: "eagle.va20b.release.si_daily2_20231010_0200", status: null ,state: "Running", uptime:"0d 00:00:00" ,owner: null,isLocked: false },
@@ -65,6 +66,12 @@ export class ReserveVmComponent implements OnInit {
     dialogReservation.afterClosed().subscribe(()=>{
       this.message.message("Reservation has been created for " + item.name!)
     })
+  }
+
+  openInformation(item : reservationVm): void{
+    const dialogInformation = this.dialog.open(InformationDialogComponent,{
+      data:{id : item.id,  name : item.name}
+    });
   }
   
   test(): void{
