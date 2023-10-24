@@ -1,4 +1,22 @@
 <div class="content" tabindex="0">
+
+    <div class="extendeds-functions">
+
+        <div class="time-modifier-wraper"> 
+            <button><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon></button>
+            <div class="time-modifier">
+                <div class="label"> Reserve koje for</div>
+                <div class="time">15 minutes</div>
+            </div>
+            <button><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="remove"></mat-icon></button>
+        </div>
+        
+        <div class="input-wrapper">
+            <input type="text">
+        </div>
+
+    </div>
+
     <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8" >
         <!-- Name Column -->
         <ng-container matColumnDef="name">

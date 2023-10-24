@@ -6,6 +6,25 @@
     max-width: 100%;
     overflow: auto;
     
+    .extendeds-functions{
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        padding: 1rem;
+        gap: 1rem;
+        .time-modifier-wraper{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            button{
+                background: none;
+                border: none;
+                font-size: 1em;
+                cursor: pointer;
+            }
+        }
+    }
+
 
     table{
         padding: 1rem;
