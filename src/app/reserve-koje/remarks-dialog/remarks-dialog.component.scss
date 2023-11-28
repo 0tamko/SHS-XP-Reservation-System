@@ -1,0 +1,46 @@
+.content{
+    margin: 1rem;
+    width: 30rem;
+    font-weight: 300;
+    .no-remarks{
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+}
+
+.buttons{   
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    button{
+        padding: 0.3rem 2rem;
+        margin: 0 0.5rem;
+        border-radius: 1rem;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .primary-button{
+        background-color: #cf4b00;
+        color: white;
+        transition: ease-in-out 100ms;
+    }
+    .primary-button:hover{
+        background-color: hsl(22, 100%, 51%);
+    }
+}
+
+.remark-input{
+    width: 90%;
+    height: 8rem;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.version-input{
+    width: 30%;
+    height: 3rem;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
