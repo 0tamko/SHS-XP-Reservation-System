@@ -1,24 +1,54 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { reservationKoje } from 'src/models/reservationKoje';
+import { AllMyReservationsDialogComponent } from './all-my-reservations-dialog/all-my-reservations-dialog.component';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { KojeReservationDialogComponent } from './koje-reservation-dialog/koje-reservation-dialog.component';
+import { RemarksDialogComponent } from './remarks-dialog/remarks-dialog.component';
+import { TIMEZONES } from 'src/shared/time-zones';
+import { KOJE_DATA } from 'src/shared/koje-data';
 
 @Component({
   selector: 'app-reserve-koje',
   templateUrl: './reserve-koje.component.html',
-  styleUrls: ['./reserve-koje.component.scss']
+  styleUrls: ['./reserve-koje.component.scss'],
 })
+
 export class ReserveKojeComponent {
   
+  constructor(private dialog:MatDialog) {}
 
   displayedColumns: string[] = ['name', 'version', 'remark', 'currentlyReservedBy','reservedTill','functions'];
 
-  data: reservationKoje [] = [
-    {id: 1,name:"Koje 13", version: "GB VA20", status: null ,remark: null , reservedTill:"17.10. 20:45" ,owner: "Kern, Felix(ext)",isLocked: true },
-    {id: 2,name:"Koje 25", version: "VA20B_SIT3", status: null ,remark: "Will be used by TC for official SIT 3", reservedTill: null ,owner: null,isLocked: true },
-    {id: 3,name:"Koje 26", version: "Sharpfin", status: null ,remark: null , reservedTill: null ,owner: null,isLocked: true },
-    {id: 4,name:"Koje 27", version: "A20B_SIT3", status: null ,remark: "Will be used by TC for official SIT 3", reservedTill: null ,owner: null,isLocked: true },
-    {id: 5,name:"Koje 33", version: "GB VA20", status: null ,remark: "used for temperature test with ceiling tube stand TUI", reservedTill: null ,owner: null,isLocked: true },
-  ]
+  data = KOJE_DATA;
+  
   dataSource = new MatTableDataSource(this.data);
 
+  timeZones = TIMEZONES;
+  selectedTimeZone = this.timeZones[0];
+
+  time: number = 30;
+
+  addTime() {
+    if (this.time < 90) {
+      this.time += 15;
+    }
+  }
+
+  removeTime() {
+    if (this.time > 15) {
+      this.time -= 15; 
+    }
+  }
+  
+  openAllMyReservations(): void{
+    const dialogAllReservations = this.dialog.open(AllMyReservationsDialogComponent);
+  }
+
+  openKojeReservation(): void{
+    const dialogKojeReservations = this.dialog.open(KojeReservationDialogComponent,{data:{timeZone:this.selectedTimeZone}});
+  }
+
+  openKojeRemarks(): void{
+    const dialogKojeRemarks = this.dialog.open(RemarksDialogComponent);
+  }
 }

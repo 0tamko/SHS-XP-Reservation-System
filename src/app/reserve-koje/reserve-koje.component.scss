@@ -12,7 +12,7 @@
         flex-direction: row-reverse;
         padding: 1rem;
         gap: 1rem;
-        .time-modifier-wraper{
+        .time-modifier-wrapper{
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -20,11 +20,39 @@
                 background: none;
                 border: none;
                 font-size: 1em;
+                color: rgb(95, 90, 90);
                 cursor: pointer;
             }
+            .label{
+                font-size: 12px;
+                color:rgb(128, 128, 128);
+                cursor: default;
+            }
         }
+        .all-reservations-wrapper{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor:pointer;
+            button{
+                background-color: white;
+                border-color: rgb(223, 223, 223);
+                border-radius: 20px;
+                border-width: thin;
+                padding: 10px;
+                font-size: 1em;
+            cursor: pointer;
+            }
+            button:hover{
+                
+                background-color:rgb(223, 223, 223);
+                border-color: transparent;
+                transition: 0.1s;
+            }
+           
+        }
+        
     }
-
 
     table{
         padding: 1rem;

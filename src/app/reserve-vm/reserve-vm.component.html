@@ -35,9 +35,9 @@
             <th mat-header-cell *matHeaderCellDef> Functions </th>
             <td mat-cell *matCellDef="let element"> 
                 <div *ngIf="element.isLocked !=true; else isOcuppied" class="function-buttons">
-                    <div class="function-item" (click)="openReservation(element)"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit_calendar"></mat-icon></div>
-                    <div class="function-item"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="lock_open"></mat-icon></div>
-                    <div class="function-item" (click)="openInformation(element)"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="content_copy"></mat-icon></div>
+                    <div class="function-item" (click)="openReservation(element)" matTooltip="Reserve this VM. Please first sync with actual owner of this VM!"><mat-icon>calendar_month</mat-icon></div>
+                    <div class="function-item" matTooltip="Lock this VM. If it is locked, daily deployments are skipped."><mat-icon>lock_open</mat-icon></div>
+                    <div class="function-item" (click)="openInformation(element)" matTooltip="Information about remote connection to this VM."><mat-icon>info</mat-icon></div>
                 </div> 
                 <ng-template #isOcuppied class="function-buttons">
                   Reserved

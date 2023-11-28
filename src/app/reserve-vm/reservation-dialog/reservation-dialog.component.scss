@@ -44,7 +44,7 @@
 
     .buttons{   
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         button{
             padding: 0.3rem 2rem;
             margin: 0 0.5rem;
@@ -54,12 +54,12 @@
             font-weight: bold;
             cursor: pointer;
         }
-        .primary-button{
+        .secondary-button{
             background-color: #cf4b00;
             color: white;
             transition: ease-in-out 100ms;
         }
-        .primary-button:hover{
+        .secondary-button:hover{
             background-color: hsl(22, 100%, 51%);
         }
     }

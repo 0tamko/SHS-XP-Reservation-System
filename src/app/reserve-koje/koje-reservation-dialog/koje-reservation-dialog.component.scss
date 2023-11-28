@@ -1,0 +1,107 @@
+.content{
+    margin: 1rem;
+    width: 35.5rem;
+    font-weight: 300;
+    margin-left:1.8rem;
+    .time-zone{
+        margin-top: 0rem;
+        font-size: 0.7rem;
+    }
+    .no-reservations{
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .multiple-days{
+        font-weight: bolder;
+    }
+    .single-day{
+        margin-top: 1rem;
+        font-weight: bolder;
+    }
+    .checkboxes{
+        input[type=checkbox]{
+            width: 1rem;
+            height: 1rem;
+            margin: 0.5rem 0;
+
+
+            &:checked{
+                accent-color: #cf4b00;
+                border: none;
+            }
+        }
+    }
+
+    label{
+        font-weight: lighter;
+        margin-left: 0.5rem;
+    }
+    margin-bottom: 1rem;
+
+    .day-buttons{
+        //display: flex;
+        //justify-content: center;
+        .day-button {
+            color:rgb(109, 109, 109);
+            padding: 0.5rem 1rem;
+            margin: 0 0.7rem;
+            margin-bottom: 1rem;
+            border-radius: 1rem;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: ease-in-out 100ms;
+            &:hover {
+                background-color: hsl(22, 100%, 51%);
+                color: white;
+            }
+        
+            &.active {
+                background-color: #cf4b00;
+                color: white;
+            }
+        }
+    }
+    hr{
+        margin-top: 1rem;
+        width: 34.5rem;
+    }
+
+    .time-picker{
+        width: 140px;
+    }
+    
+    .date-picker{
+        width: 270px;
+    }
+}
+
+.buttons{   
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    button{
+        padding: 0.3rem 2rem;
+        margin: 0 0.5rem;
+        border-radius: 1rem;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .primary-button{
+        background-color: #cf4b00;
+        color: white;
+        transition: ease-in-out 100ms;
+    }
+    .primary-button:hover{
+        background-color: hsl(22, 100%, 51%);
+    }
+}
+
+input.mat-mdc-input-element::-webkit-calendar-picker-indicator {
+    display: block;
+  }
+

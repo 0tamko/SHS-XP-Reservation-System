@@ -1,0 +1,96 @@
+<h2 mat-dialog-title>Koje reservation</h2>
+
+<div class="content">
+    <p class="time-zone">{{selectedTimeZone}}</p> 
+    
+    <p class="multiple-days"> Multiple days reservation </p>
+    <table>
+        <tr>
+            <th><mat-form-field class="date-picker">
+                <mat-label>Select a date range</mat-label>
+                <mat-date-range-input [rangePicker]="rangePicker">
+                    <input matStartDate placeholder="Start date">
+                    <input matEndDate placeholder="End date">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+                <mat-date-range-picker #rangePicker>
+                    <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>Cancel</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                    </mat-datepicker-actions>
+                </mat-date-range-picker>
+            </mat-form-field></th>
+
+            <th><mat-form-field class="time-picker">
+                <mat-label>Select start time</mat-label>
+                <input matInput type="time" [(ngModel)]="starttime">
+            </mat-form-field></th>
+            
+            <th><mat-form-field class="time-picker">
+                <mat-label>Select end time</mat-label>
+                <input matInput type="time" [(ngModel)]="endtime">
+                
+            </mat-form-field></th>
+        </tr>        
+    </table>
+
+    <hr>
+
+    <p class="single-day"> Single day reservation </p> 
+    <table>
+        <tr>
+            <th><mat-form-field class="date-picker">
+                <mat-label>Select date</mat-label>
+                <input matInput [matDatepicker]="enddatepicker">
+                <mat-datepicker-toggle matIconSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #enddatepicker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+                </mat-datepicker>
+            </mat-form-field></th>
+
+            <th><mat-form-field class="time-picker">
+                <mat-label>Select start time</mat-label>
+                <input matInput type="time" [(ngModel)]="endtime" [disabled]="changeDisability">
+            </mat-form-field></th>
+
+            <th><mat-form-field class="time-picker">
+                <mat-label>Select end time</mat-label>
+                <input matInput type="time" [(ngModel)]="endtime" [disabled]="changeDisability">
+            </mat-form-field></th>
+        </tr>
+    </table>
+    
+    <div class="checkboxes">
+        <div>
+            <input type="checkbox" id="allday" (click)="disableDatePicker()"> 
+            <label for="allday">Reserve for all day</label>
+        </div>
+        <div>    
+            <input type="checkbox" id="repeat" (click)="rollButton()"> 
+            <label for="repeat">Repeat reservation</label>
+        </div>
+    </div>
+
+    <div class="day-buttons">
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonMonActive}" (click)="toggleButtonMon()" [(ngModel)]="isButtonMonActive">Mon</button>
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonTueActive}" (click)="toggleButtonTue()" [(ngModel)]="isButtonTueActive">Tue</button>
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonWedActive}" (click)="toggleButtonWed()" [(ngModel)]="isButtonWedActive">Wed</button>
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonThuActive}" (click)="toggleButtonThu()" [(ngModel)]="isButtonThuActive">Thu</button>
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonFriActive}" (click)="toggleButtonFri()" [(ngModel)]="isButtonFriActive">Fri</button>
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonSatActive}" (click)="toggleButtonSat()" [(ngModel)]="isButtonSatActive">Sat</button>
+        <button [hidden]="buttonInvisible" [ngClass]="{'day-button': true, 'active': isButtonSunActive}" (click)="toggleButtonSun()" [(ngModel)]="isButtonSunActive">Sun</button>
+    </div>
+        
+    <hr>
+    
+    <p class="no-reservations">No reservations</p>
+
+</div>
+
+<div class="buttons">
+    <button (click)="onCloseClick()">Close</button>
+    <button class="primary-button" (click)="onCloseClick()">Save</button>
+</div>
