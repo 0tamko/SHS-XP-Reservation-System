@@ -55,6 +55,10 @@ export class ReserveKojeComponent {
     const dialogKojeRemarks = this.dialog.open(RemarksDialogComponent,{data:{kojeDetails: element}});
   }
 
+  onReservationClick(element: reservationKoje){
+    this.message.message("Reservation has been created for " + element.name);
+  }
+
 }
 
 
