@@ -1,25 +1,28 @@
-<h2 mat-dialog-title>TO DO: koje title + Remarks</h2>
+<h2 mat-dialog-title>{{kojeDetails.name}} remarks</h2>
 
 <div class="content">
-    <p class="no-remarks">No remarks.</p>
+    <div *ngIf="remarkPresent; else elseBlock">
+        <p>Remark: {{remarkInput}}</p>
+        <p>Version: {{versionInput}}</p>
+    </div>
 
-    <form>
-        <mat-form-field class="remark-input">
-            <mat-label>Remark</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-    </form>
-
-    <form>
-        <mat-form-field class="version-input">
-            <mat-label>Version</mat-label>
-            <textarea matInput></textarea>
-        </mat-form-field>
-    </form>
+    <ng-template #elseBlock>
+        <p class="no-remarks">No remarks.</p>
+    </ng-template>
+    
+    <mat-form-field class="remark-input">
+        <mat-label>Remark</mat-label>
+        <input matInput [(ngModel)]="remarkInput">
+    </mat-form-field>
+    
+    <mat-form-field class="version-input">
+        <mat-label>Version</mat-label>
+        <input matInput [(ngModel)]="versionInput">
+    </mat-form-field>
 </div>
 
 <mat-dialog-actions class="buttons">
-    <button>Delete</button>
-    <button>Cancel</button>
-    <button class="primary-button">Save</button>
+    <button (click)="onDeleteClick()">Delete</button>
+    <button (click)="onCloseClick()">Close</button>
+    <button class="primary-button" [mat-dialog-close]="kojeDetails" (click)="onSaveClick()">Save</button>
 </mat-dialog-actions>

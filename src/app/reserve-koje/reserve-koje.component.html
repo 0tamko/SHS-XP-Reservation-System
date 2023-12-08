@@ -67,8 +67,8 @@
             <td mat-cell *matCellDef="let element"> 
                 <div class="function-buttons">
                     <div class="function-item" matTooltip="Reserve {{element.name}} for {{time}} minutes"><mat-icon>access_alarm</mat-icon></div>
-                    <div class="function-item" matTooltip="Custom reservation"><mat-icon (click)="openKojeReservation()"> calendar_month </mat-icon></div>
-                    <div class="function-item" matTooltip="Edit remark"><mat-icon (click)="openKojeRemarks()"> edit </mat-icon></div>
+                    <div class="function-item" matTooltip="Custom reservation"><mat-icon (click)="openKojeReservation(element)"> calendar_month </mat-icon></div>
+                    <div class="function-item" matTooltip="Edit remark"><mat-icon (click)="openKojeRemarks(element)"> edit </mat-icon></div>
                 </div> 
             </td>
           </ng-container>

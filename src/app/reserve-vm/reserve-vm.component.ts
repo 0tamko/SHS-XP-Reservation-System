@@ -15,7 +15,7 @@ import { VIRTUAL_MACHINES_DATA } from 'src/shared/virtual-machines-data';
 
 export class ReserveVmComponent implements OnInit {
   
-  constructor(private message: MessageService , private dialog: MatDialog) {}
+  constructor(private messageService: MessageService , private dialog: MatDialog) {}
   
 
   @ViewChild(MatSort) sort!: MatSort;
@@ -33,21 +33,18 @@ export class ReserveVmComponent implements OnInit {
   }
 
   openReservation(item : reservationVm): void{
-    const dialogReservation = this.dialog.open(ReservationDialogComponent, {
+    this.dialog.open(ReservationDialogComponent, {
       data:{id : item.id,  name : item.name}
     });
-    dialogReservation.afterClosed().subscribe(()=>{
-      this.message.message("Reservation has been created for " + item.name!)
-    })
   }
 
   openInformation(item : reservationVm): void{
-    const dialogInformation = this.dialog.open(InformationDialogComponent,{
+    this.dialog.open(InformationDialogComponent,{
       data:{id : item.id,  name : item.name}
     });
   }
   
   test(): void{
-    this.message.message("test")
+    this.messageService.message("test")
   }
 }

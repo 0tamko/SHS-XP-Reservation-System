@@ -1,13 +1,15 @@
 .content{
-    margin: 1rem;
     width: 35.5rem;
     font-weight: 300;
-    margin-left:1.8rem;
     .time-zone{
         margin-top: 0rem;
         font-size: 0.7rem;
     }
     .no-reservations{
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .reserved-by{
         text-align: center;
         margin-top: 1rem;
     }
@@ -32,6 +34,10 @@
             }
         }
     }
+    
+    table {
+        width: 100%;
+      }
 
     label{
         font-weight: lighter;

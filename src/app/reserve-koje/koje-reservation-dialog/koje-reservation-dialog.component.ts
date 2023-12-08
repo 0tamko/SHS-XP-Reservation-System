@@ -1,10 +1,16 @@
-import { Component, OnInit, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {MatRadioModule} from '@angular/material/radio';
-import {FormsModule} from '@angular/forms';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatCardModule} from '@angular/material/card';
-import {ThemePalette} from '@angular/material/core';
+import { MessageService } from 'src/shared/message.service';
+
+export interface Reservation {
+  owner: string;
+  start: string;
+  end: string;
+}
+
+const ELEMENT_DATA: Reservation[] = [
+  {owner: '', start: '', end: ''},
+];
 
 @Component({
   selector: 'app-koje-reservation-dialog',
@@ -12,24 +18,27 @@ import {ThemePalette} from '@angular/material/core';
   styleUrls: ['./koje-reservation-dialog.component.scss']
 })
 
+
+
 export class KojeReservationDialogComponent {
   constructor (
-    public dialogRef: MatDialogRef<KojeReservationDialogComponent>,
+    public dialogRef: MatDialogRef<KojeReservationDialogComponent>, 
+    private message:MessageService,
     @Inject (MAT_DIALOG_DATA) public data: any, 
     ) {
       this.setNow();
     }
+   
     
     ngOnInit(): void {
     }
 
+
     onCloseClick(): void {
       this.dialogRef.close()
     }
-
-    starttime: string = '';
-    endtime: string = '';
     
+
     setNow(){
       let now = new Date();
       let hours = ("0" + now.getHours()).slice(-2);
@@ -39,14 +48,11 @@ export class KojeReservationDialogComponent {
       this.endtime = str;
     }
 
-    selectedTimeZone = this.data.timeZone;  
-    
-    showButtons : boolean = false;
 
-    rollButtons() {
-        this.showButtons = !this.showButtons;
-    }
-        
+    selectedTimeZone = this.data.timeZone;  
+    name = this.data.name;
+
+
     isButtonMonActive = false;
     isButtonTueActive = false;
     isButtonWedActive = false;
@@ -54,7 +60,6 @@ export class KojeReservationDialogComponent {
     isButtonFriActive = false;
     isButtonSatActive = false;
     isButtonSunActive = false;
-
     toggleButtonMon() {
       this.isButtonMonActive = !this.isButtonMonActive;
     }
@@ -77,15 +82,39 @@ export class KojeReservationDialogComponent {
       this.isButtonSunActive = !this.isButtonSunActive;
     }
 
-    buttonInvisible = true;
 
-  rollButton() {
+  buttonInvisible = true;
+  rollButtons() {
     this.buttonInvisible = !this.buttonInvisible;
   }
 
-  changeDisability = false;
 
+  changeDisability = false;
   disableDatePicker() {
     this.changeDisability = !this.changeDisability;
   }
+
+  displayedColumns: string[] = ['owner', 'start', 'end'];
+  dataSource = ELEMENT_DATA;
+
+
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+  starttime: string = '';
+  endtime: string = '';
+  reservation = false;
+  reservationIndex: number= 0; 
+  
+  onSaveClick(){
+    //nefunguje
+    //TODO: display more reservation, cut dates
+    this.reservation = true;
+    ELEMENT_DATA[this.reservationIndex].start = this.startDate.getDay() + '.' + this.startDate.getMonth() + '.' + this.startDate.getFullYear() +  ' ' + this.starttime;
+    ELEMENT_DATA[this.reservationIndex].end = this.endDate.getDay() + '.' + this.endDate.getMonth() + '.' + this.endDate.getFullYear() +  ' ' + this.endtime;
+    ELEMENT_DATA[this.reservationIndex].owner = 'Owner Name';
+    this.message.message("Reservation has been created for " + this.name )
+  }
+
+
+  
 }
