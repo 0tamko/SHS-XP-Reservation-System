@@ -114,7 +114,5 @@ export class KojeReservationDialogComponent {
     ELEMENT_DATA[this.reservationIndex].owner = 'Owner Name';
     this.message.message("Reservation has been created for " + this.name )
   }
-
-
   
 }
