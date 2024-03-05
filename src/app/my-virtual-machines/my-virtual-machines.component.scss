@@ -2,7 +2,53 @@
     background-color: white;
     width: inherit;
     margin: 1rem;
-    max-height: 85vh;
+    height: 85vh;
     max-width: 100%;
     overflow: auto;
+    .no-reservations{
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 300;
+        font-size: large;
+        p{
+            padding-top: 2rem;
+            padding-bottom: 1rem;
+        }
+        hr{
+            margin: 0 2rem;
+        }
+    }
+    table{
+        padding: 1rem;
+        tr:not(.table-header):hover {
+            background: whitesmoke;
+            cursor: pointer;
+        }
+        tr:not(.table-header):active {
+            background: #efefef;
+        }
+
+        .function-buttons{
+            width: auto;
+            display: flex;
+            gap: 1rem;
+            button{
+                background-color: transparent;
+                border: none;
+                color: gray;
+                transition: ease-in-out 200ms;
+                cursor: pointer;
+                :hover{
+                    color: black;
+                }
+            }
+            button:disabled{
+                color: lightgrey;
+                cursor: auto;
+                :hover{
+                    color: lightgrey;
+                }
+            }
+        }
+    }
 }

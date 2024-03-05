@@ -13,7 +13,7 @@
         <a routerLink="home" routerLinkActive="active-link" matTooltip="Go to the Home page.">Home</a>
       </div>
       <div class="navbar-item">
-        <a routerLink="myvms" routerLinkActive="active-link" matTooltip="Go to My virtual machines.">My virtual Machine</a>
+        <a routerLink="myvms" routerLinkActive="active-link" matTooltip="Go to My virtual machines.">My Virtual Machine</a>
       </div>
       <div class="navbar-item">
         <a routerLink="reservationvms" routerLinkActive="active-link" matTooltip="Go to Reserve VM.">Reserve VM</a>
@@ -29,10 +29,16 @@
         <a href=""><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="light_mode" matTooltip="Change theme."></mat-icon></a>
         <a href="">
           <div class="user-profile">
-            <span class="userName" matTooltip="Open user menu.">MH</span>
+            <span class="userName" matTooltip="Open user menu.">{{loggedInUser}}</span>
           </div>
         </a>
     </div>
+
+    <span>
+      
+      <button *ngIf="!isLoggedIn" mat-button (click)="login()"> Login </button>
+      <button *ngIf="isLoggedIn" mat-button (click)="logout()"> Logout </button>
+    </span>
   </nav>
   
     <router-outlet></router-outlet>

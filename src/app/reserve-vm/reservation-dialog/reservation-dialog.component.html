@@ -1,37 +1,134 @@
-<div class="content">
-    <h1 class="vm-name">{{data.name}}</h1>    
-    
-    <div class="information-item">
-        <p>How to reserve virtual machine (VM):</p>
-        <ul>
-            <li>Set the date of the reservation end.</li>
-            <li>Set the time of the reservation end.</li>
-            <li>Choose if you want to set the VM at lock state.</li>
-        </ul>
-        <p class="info">You will find your reserved VM in "My virtual machines" page. 
-            Reservation will end automatically or you can unreserve it anytime. 
-            Also you can change VM's lock state anytime and it will be unlocked at the end of your reservation.
-        </p>
-    </div>
-
-    <div class="date-and-time-picker">
-        <input type="date">
-        <input type="date">
-    </div>
-    
-
-    <div class="checkboxes">
-        <div>
-            <input type="checkbox" id="allday">
-            <label for="allday">All day</label>
+<mat-dialog-content class="mat-typography">
+    <div class="content">
+        <p class="title">{{data.name}}</p>    
+        
+        <div class="information">
+            <p class="header">How to reserve virtual machine (VM):</p>
+            <ul>
+                <li>Set the start and end date of the reservation.</li>
+                <li>Set the start and end time of the reservation.</li>
+                <li>Choose if you want to set the VM at lock state.</li>
+            </ul>
+            <p class="info">You will find all your created VM reservations in <span class="bold">"All my reservations"</span> section.
+                Your currently running reservations are displayed in <span class="bold">"My virtual Machine"</span> page. 
+                Reservation will end automatically or you can unreserve it anytime. 
+                Also you can change VM's lock state anytime and it will be unlocked at the end of your reservation.
+            </p>
         </div>
-        <div>
-            <input type="checkbox" id="lockvm">
-            <label for="lockvm">Lock the virtual machine</label>
+
+        <table>
+            <tr>
+            <th><mat-form-field>
+                <mat-label>Start date</mat-label>
+                <input matInput [min]="today" [matDatepicker]="startDatePicker" placeholder="Start date" [(ngModel)]="startDate" (ngModelChange)="dateChanged()">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field></th>
+
+            <th><mat-form-field>
+                <mat-label>Start time</mat-label>
+                <input matInput type="time" [(ngModel)]="starttime" [disabled]="allDay">
+            </mat-form-field></th>
+            </tr>
+
+            <tr>
+            <th><mat-form-field>
+                <mat-label>End date</mat-label>
+                <input matInput [min]="startDate" [matDatepicker]="endDatePicker" placeholder="End date" [(ngModel)]="endDate" (ngModelChange)="dateChanged()">
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+            </mat-form-field></th>
+        
+            <th><mat-form-field>
+                <mat-label>End time</mat-label>
+                <input matInput type="time" [(ngModel)]="endtime" [disabled]="allDay">     
+            </mat-form-field></th>
+            </tr>   
+        </table>
+
+        <div class="checkboxes" [hidden]="!(singleDayReservation)">
+            <div>
+                <input type="checkbox" id="allday" (click)="changeDisability()"> 
+                <label for="allday">Reserve for all day</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="lockvm" (click)="changeLock()">
+                <label for="lockvm">Lock the virtual machine</label>
+            </div>
+
+            <div>    
+                <input type="checkbox" id="repeat" (click)="rollButtons()"> 
+                <label for="repeat">Repeat reservation</label>
+            </div>
         </div>
+
+        <div [hidden]="!(buttonVisible)">
+            <div class="repeat"> Repeat every: </div>
+
+            <div class="day-buttons">
+                <button [ngClass]="{'day-button': true, 'active': days[1].value}" (click)="selectDay(1, days[1].value)" [(ngModel)]="days[1].value">{{days[1].day}}</button>
+                <button [ngClass]="{'day-button': true, 'active': days[2].value}" (click)="selectDay(2, days[2].value)" [(ngModel)]="days[2].value">{{days[2].day}}</button>
+                <button [ngClass]="{'day-button': true, 'active': days[3].value}" (click)="selectDay(3, days[3].value)" [(ngModel)]="days[3].value">{{days[3].day}}</button>
+                <button [ngClass]="{'day-button': true, 'active': days[4].value}" (click)="selectDay(4, days[4].value)" [(ngModel)]="days[4].value">{{days[4].day}}</button>
+                <button [ngClass]="{'day-button': true, 'active': days[5].value}" (click)="selectDay(5, days[5].value)" [(ngModel)]="days[5].value">{{days[5].day}}</button>
+                <button [ngClass]="{'day-button': true, 'active': days[6].value}" (click)="selectDay(6, days[6].value)" [(ngModel)]="days[6].value">{{days[6].day}}</button>                
+                <button [ngClass]="{'day-button': true, 'active': days[0].value}" (click)="selectDay(0, days[0].value)" [(ngModel)]="days[0].value">{{days[0].day}}</button>
+            </div>
+        
+            <div class="repeat"> Until: </div>
+            
+            <mat-form-field class="until-date-picker">
+                <mat-label>Select date</mat-label>
+                <input matInput [matDatepicker]="untildate" [(ngModel)]="untilDate">
+                <mat-datepicker-toggle matIconSuffix [for]="untildate"></mat-datepicker-toggle>
+                <mat-datepicker #untildate></mat-datepicker>
+            </mat-form-field>
+        </div>
+ 
+        <hr>
+        
+        <div *ngIf = "myVMReservations.length == 0; else elseBlock">
+            <p class="no-reservations">No reservations</p>
+        </div>
+        
+        <ng-template #elseBlock>
+            <p class="reserved-by">Reserved by</p>
+            
+            <table mat-table [dataSource]="myVMReservations" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="owner">
+                    <th mat-header-cell *matHeaderCellDef> Owner </th>
+                    <td mat-cell *matCellDef="let element"> {{element.owner}} </td>
+                </ng-container>
+            
+                <ng-container matColumnDef="start">
+                    <th mat-header-cell *matHeaderCellDef> Start Time </th>
+                    <td mat-cell *matCellDef="let element"> {{element.start | date : 'dd.MM.yyyy HH:mm'}} </td>
+                </ng-container>
+            
+
+                <ng-container matColumnDef="end">
+                    <th mat-header-cell *matHeaderCellDef> End Time </th>
+                    <td mat-cell *matCellDef="let element"> {{element.end | date : 'dd.MM.yyyy HH:mm'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element"> 
+                        <div class="delete-button" (click)="deleteReservation(element)"><mat-icon> clear </mat-icon></div>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+        </ng-template>
     </div>
-    <div class="buttons">
-        <button class="secondary-button" (click)="onCancelClick()">Cancel</button>
-        <button class="primary-button" mat-dialog-close cdkFocusInitial (click)="onReserveClick()">Reserve</button>
-    </div>
+</mat-dialog-content>
+
+<div class="buttons">
+    <button class="secondary-button" (click)="onCancelClick()">Cancel</button> 
+    <button class="primary-button" (click)="onReserveClick()">Reserve</button>
 </div>

@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>{{kojeDetails.name}} remarks</h2>
 
 <div class="content">
-    <div *ngIf="remarkPresent; else elseBlock">
-        <p>Remark: {{remarkInput}}</p>
-        <p>Version: {{versionInput}}</p>
+
+    <div *ngIf="(kojeDetails.remark != null && kojeDetails.remark != ''); else elseBlock">
+        <p class="remarks">Remark: {{kojeDetails.remark}}</p>
     </div>
 
     <ng-template #elseBlock>
@@ -19,10 +19,13 @@
         <mat-label>Version</mat-label>
         <input matInput [(ngModel)]="versionInput">
     </mat-form-field>
+    
 </div>
 
 <mat-dialog-actions class="buttons">
+
     <button (click)="onDeleteClick()">Delete</button>
     <button (click)="onCloseClick()">Close</button>
-    <button class="primary-button" [mat-dialog-close]="kojeDetails" (click)="onSaveClick()">Save</button>
+    <button class="primary-button" (click)="onSaveClick()" >Save</button>
+
 </mat-dialog-actions>

@@ -2,6 +2,11 @@
     margin: 1rem;
     width: 30rem;
     font-weight: 300;
+
+    .remarks{
+         padding-bottom: 1rem;
+         padding-left: 1.5rem;
+    }
     .no-remarks{
         text-align: center;
         padding-bottom: 1rem;
@@ -12,6 +17,7 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 1rem;
+
     button{
         padding: 0.3rem 2rem;
         margin: 0 0.5rem;
@@ -21,11 +27,13 @@
         font-weight: bold;
         cursor: pointer;
     }
+
     .primary-button{
-        background-color: #cf4b00;
+        background-color: #ec6602;
         color: white;
         transition: ease-in-out 100ms;
     }
+    
     .primary-button:hover{
         background-color: hsl(22, 100%, 51%);
     }

@@ -31,7 +31,13 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { AllMyReservationsDialogComponent } from './reserve-koje/all-my-reservations-dialog/all-my-reservations-dialog.component';
 import { KojeReservationDialogComponent } from './reserve-koje/koje-reservation-dialog/koje-reservation-dialog.component';
 import { RemarksDialogComponent } from './reserve-koje/remarks-dialog/remarks-dialog.component';
-
+import { DeleteAllReservationsDialogComponent } from './reserve-koje/all-my-reservations-dialog/delete-all-reservations-dialog/delete-all-reservations-dialog.component';
+import { AllMyVmReservationsDialogComponent } from './reserve-vm/all-my-vm-reservations-dialog/all-my-vm-reservations-dialog.component';
+import { DeleteAllMyVmReservationsDialogComponent } from './reserve-vm/all-my-vm-reservations-dialog/delete-all-my-vm-reservations-dialog/delete-all-my-vm-reservations-dialog.component';
+import { UnreserveVmDialogComponent } from './my-virtual-machines/unreserve-vm-dialog/unreserve-vm-dialog.component';
+import { PowerOffDialogComponent } from './my-virtual-machines/power-off-dialog/power-off-dialog.component';
+import { SignInRedirectCallbackComponent } from './home/signin-redirect-callback.component';
+import { SignOutRedirectCallbackComponent } from './home/signout-redirect-callback.component';
 
 
 @NgModule({
@@ -46,6 +52,13 @@ import { RemarksDialogComponent } from './reserve-koje/remarks-dialog/remarks-di
     AllMyReservationsDialogComponent,
     KojeReservationDialogComponent,
     RemarksDialogComponent,
+    DeleteAllReservationsDialogComponent,
+    AllMyVmReservationsDialogComponent,
+    DeleteAllMyVmReservationsDialogComponent,
+    PowerOffDialogComponent,
+    UnreserveVmDialogComponent,
+    SignInRedirectCallbackComponent,
+    SignOutRedirectCallbackComponent
   ],
   imports: [
     BrowserModule,

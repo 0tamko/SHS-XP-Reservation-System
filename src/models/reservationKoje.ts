@@ -1,6 +1,6 @@
 export class reservationKoje{
     constructor(
-        public id: number|null,
+        public id: number,
         public name: string|null,
         public status: string|null,
         public remark: string|null,

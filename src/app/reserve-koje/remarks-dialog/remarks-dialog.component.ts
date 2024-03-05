@@ -7,17 +7,19 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./remarks-dialog.component.scss']
 })
 export class RemarksDialogComponent {
+
   constructor (
     public dialogRef : MatDialogRef<RemarksDialogComponent>,
     @Inject (MAT_DIALOG_DATA) public data : any,
   ) {}
 
-  remarkPresent = false;
-
+  kojeDetails = this.data.kojeDetails;
+  remarkInput = this.kojeDetails.remark;
+  versionInput = this.kojeDetails.version;
+  
   onSaveClick(): void {
-    this.remarkPresent = true;
-    this.kojeDetails.remark = this.remarkInput;
-    this.kojeDetails.version = this.versionInput;
+      this.kojeDetails.remark = this.remarkInput;
+      this.kojeDetails.version = this.versionInput;
   }
 
   onCloseClick(): void {
@@ -25,12 +27,9 @@ export class RemarksDialogComponent {
   }
 
   onDeleteClick(): void {
-    this.remarkPresent = false;
     this.remarkInput = '';
-  }
-
-  kojeDetails = this.data.kojeDetails;
-
-  remarkInput : string = '';
-  versionInput : string = '';
+    this.versionInput = '';
+    this.kojeDetails.remark = '';
+    this.kojeDetails.version = '';
+  } 
 }

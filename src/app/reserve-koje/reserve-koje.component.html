@@ -12,7 +12,7 @@
         <mat-form-field>
           <mat-label>Time zone</mat-label>
           <mat-select [(value)]="selectedTimeZone">
-            <mat-option [value]="timezone" *ngFor="let timezone of timeZones">{{timezone}}</mat-option>
+            <mat-option [value]="timezone" *ngFor="let timezone of timeZones">{{timezone.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -58,7 +58,7 @@
            <!-- Owner Column -->
            <ng-container matColumnDef="reservedTill">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by owner"> Reserved till </th>
-            <td mat-cell *matCellDef="let element"> {{element.reservedTill}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.reservedTill | date : 'dd.MM. HH:mm' : selectedTimeZone.difference}} </td>
           </ng-container>
 
            <!-- Functions Column -->
@@ -75,6 +75,7 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"  class="table-header"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+
+        </table>
 </div>
 

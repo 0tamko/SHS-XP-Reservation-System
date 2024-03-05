@@ -1,16 +1,31 @@
 .content{
-    padding: 1rem;
-    max-width: 30rem;
+    max-width: 37.5rem;
     font-weight: 300;
-    h1{
+    color: black;
+    
+    .no-reservations{
+        text-align: center;
+        margin-top: 1rem;
+    }
+    
+    .reserved-by{
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .title{
         font-size: 1.25rem;
         margin-top: 0;
         margin-bottom: 1rem;
         font-weight: 500;
         padding: 0;
     }
-    .information-item{
+    .information{
         font-size: 1rem;
+        padding: 0 0.5rem;
+        .header{
+            font-weight: 400;
+        }
         ul{
             padding: 0 2.5rem;
             margin-bottom: 0.5rem;
@@ -18,10 +33,14 @@
         .info{
             text-align: justify;
             margin-bottom: 0.5rem;
+            .bold{
+                font-weight: 400;
+            }
         }
     }
 
     .checkboxes{
+        padding: 0 0.5rem;
         input[type=checkbox]{
             width: 1rem;
             height: 1rem;
@@ -33,34 +52,98 @@
                 border: none;
             }
         }
-
-
         label{
-            font-weight: lighter;
             margin-left: 0.5rem;
         }
-        margin-bottom: 1rem;
     }
 
-    .buttons{   
-        display: flex;
-        justify-content: flex-end;
-        button{
-            padding: 0.3rem 2rem;
-            margin: 0 0.5rem;
+    table {
+        width: 100%;
+      }
+
+    .repeat{
+        font-size: small;
+        margin-left: 1.5rem;
+    }
+
+    .day-buttons{
+        margin-top: 0.7rem;
+        margin-left: 2rem;
+        .day-button {
+            color:rgb(109, 109, 109);
+            padding: 0.5rem 1rem;
+            margin: 0 0.6rem;
+            margin-bottom: 1rem;
             border-radius: 1rem;
             border: none;
             font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
-        }
-        .primary-button{
-            background-color: #cf4b00;
-            color: white;
             transition: ease-in-out 100ms;
-        }
-        .primary-button:hover{
-            background-color: hsl(22, 100%, 51%);
+
+            &:hover {
+                background-color: #ec6602;
+                color: white;
+            }
+        
+            &.active {
+                background-color: #ff6600;
+                color: white;
+            }
         }
     }
+
+    hr{
+        margin-top: 1rem;
+        margin-left: 0.3rem;
+        width: 36.5rem;
+    }
+
+    .until-date-picker{
+        width: 250px;
+        margin-left: 2rem;
+    }
+
+}
+
+.buttons{   
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+
+    button{
+        padding: 0.3rem 2rem;
+        margin: 0 0.5rem;
+        border-radius: 1rem;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .primary-button{
+        background-color: #ec6602;
+        color: white;
+        transition: ease-in-out 100ms;
+    }
+    
+    .primary-button:hover{
+        background-color: hsl(22, 100%, 51%);
+    }
+}
+
+input.mat-mdc-input-element::-webkit-calendar-picker-indicator {
+    display: block;
+  }
+
+.delete-button{
+    width: auto;
+    display: flex;
+    gap: 1rem;
+    color: gray;
+    transition: ease-in-out 200ms;
+}
+    
+.delete-button:hover{
+    color: black;
 }

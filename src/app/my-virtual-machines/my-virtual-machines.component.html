@@ -1,3 +1,53 @@
-<div class="content">
-    You don't have any virtual machines reserved.
+<div class="content" tabindex="0">
+    <div class="no-reservations" *ngIf = "runningReservations.length == 0; else elseBlock">
+        <p>You don't have any currently running VM reservations.</p>    
+        <hr>
+    </div>
+
+    <ng-template #elseBlock>
+        <table mat-table [dataSource]="runningReservations" class="mat-elevation-z8">
+            <ng-container matColumnDef="VM">
+                <th mat-header-cell *matHeaderCellDef> VM </th>
+                <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="version">
+                <th mat-header-cell *matHeaderCellDef> Version </th>
+                    <td mat-cell *matCellDef="let element">{{element.version}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef> State </th>
+                    <td mat-cell *matCellDef="let element">{{element.state}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="uptime">
+                <th mat-header-cell *matHeaderCellDef> Uptime </th>
+                    <td mat-cell *matCellDef="let element">{{element.uptime}}</td>
+            </ng-container>
+        
+            <ng-container matColumnDef="reservedTill">
+                <th mat-header-cell *matHeaderCellDef> Reserved till </th>
+                <td mat-cell *matCellDef="let element">{{element.end | date : 'dd.MM.yyyy HH:mm'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="functions">
+                <th mat-header-cell *matHeaderCellDef> Functions </th>
+                <td mat-cell *matCellDef="let element"> 
+                    <div class="function-buttons">
+                        <button (click)="startStopVM(element)" *ngIf="element.state == 'Running'" matTooltip="Stop this VM."><mat-icon>stop</mat-icon></button>
+                        <button (click)="startStopVM(element)" *ngIf="element.state == 'Off'" matTooltip="Start this VM." ><mat-icon>play_arrow</mat-icon></button>
+                        <button (click)="powerOff(element)" [disabled]="element.state == 'Off'" matTooltip="Power off this VM." [matTooltipDisabled]="element.state == 'Off'"><mat-icon>power_settings_new</mat-icon></button>
+                        <button (click)="unreserveVM(element)" matTooltip="Unreserve this VM."><mat-icon>undo</mat-icon></button>
+                        <button (click)="changeLock(element)" *ngIf="element.isLocked" matTooltip="Unlock this VM. If it is locked, daily deployments are skipped."> <mat-icon>lock</mat-icon></button>
+                        <button (click)="changeLock(element)" *ngIf="!(element.isLocked)" matTooltip="Lock this VM. If it is locked, daily deployments are skipped."><mat-icon>lock_open</mat-icon></button>    
+                        <button (click)="openInformationDialog(element)" matTooltip="Information about remote connection to this VM."> <mat-icon>info</mat-icon></button>
+                    </div>
+                </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </ng-template>
 </div>

@@ -1,0 +1,36 @@
+.icon{
+    color: #ec6602;
+}
+
+.content{
+    width: 20rem;
+    font-weight: 300;
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.buttons{   
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+
+    button{
+        padding: 0.3rem 2rem;
+        margin: 0 0.5rem;
+        border-radius: 1rem;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .yes-button{
+        background-color: #ec6602;
+        color: white;
+        transition: ease-in-out 100ms;
+    }
+    
+    .yes-button:hover{
+        background-color: hsl(22, 100%, 51%);
+    }
+}
