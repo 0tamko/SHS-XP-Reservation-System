@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -82,11 +83,15 @@ import { SignOutRedirectCallbackComponent } from './home/signout-redirect-callba
     MatRadioModule,
     MatCheckboxModule,
     MatCardModule,
+    HttpClientModule,
     //App routing Module MUST BE last!!
     AppRoutingModule
   ],
   providers: [
-    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { subscriptSizing: 'dynamic' } }
+    { 
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, 
+      useValue: { subscriptSizing: 'dynamic' }
+    },
   ],
   bootstrap: [AppComponent]
 })

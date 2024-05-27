@@ -1,5 +1,6 @@
 import { Component, Inject} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { KojeService } from 'src/shared/koje.service';
 
 @Component({
   selector: 'app-remarks-dialog',
@@ -9,17 +10,24 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class RemarksDialogComponent {
 
   constructor (
-    public dialogRef : MatDialogRef<RemarksDialogComponent>,
-    @Inject (MAT_DIALOG_DATA) public data : any,
+    public dialogRef: MatDialogRef<RemarksDialogComponent>,
+    @Inject (MAT_DIALOG_DATA) public data: any, 
+    public kojeService: KojeService, 
   ) {}
 
   kojeDetails = this.data.kojeDetails;
-  remarkInput = this.kojeDetails.remark;
+  remarkInput = this.kojeDetails.remarks;
   versionInput = this.kojeDetails.version;
   
   onSaveClick(): void {
-      this.kojeDetails.remark = this.remarkInput;
+    this.versionInput = (this.versionInput == null) ? '' : this.versionInput;
+    this.remarkInput = (this.remarkInput == null) ? '' : this.remarkInput;
+
+    this.kojeService.setRemark(this.kojeDetails.kojeName, this.remarkInput, this.versionInput).subscribe( result => {
+      this.kojeDetails.remarks = this.remarkInput;
       this.kojeDetails.version = this.versionInput;
+      this.dialogRef.close();  
+    });
   }
 
   onCloseClick(): void {
@@ -28,8 +36,9 @@ export class RemarksDialogComponent {
 
   onDeleteClick(): void {
     this.remarkInput = '';
-    this.versionInput = '';
-    this.kojeDetails.remark = '';
-    this.kojeDetails.version = '';
+    this.kojeDetails.remarks = '';
+    this.kojeService.deleteRemark(this.kojeDetails.kojeName).subscribe(result => {
+      this.dialogRef.close();
+    });
   } 
 }

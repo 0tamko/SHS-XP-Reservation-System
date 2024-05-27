@@ -11,7 +11,7 @@
       <div class="time-zone-wrapper">
         <mat-form-field>
           <mat-label>Time zone</mat-label>
-          <mat-select [(value)]="selectedTimeZone">
+          <mat-select [(value)]="selectedTimeZone" (valueChange)="checkTimezoneOffset()">
             <mat-option [value]="timezone" *ngFor="let timezone of timeZones">{{timezone.name}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -20,21 +20,21 @@
       
           
       <div class="time-modifier-wrapper"> 
-        <button (click)="removeTime()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="remove"></mat-icon></button>
+        <button (click)="changeTime(0)"><mat-icon> remove </mat-icon></button>
         <div class="time-modifier">
           <div class="label"> Reserve koje for </div>
           <div class="time"> {{time}} minutes </div>
         </div>
-        <button (click)="addTime()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add"></mat-icon></button>
+        <button (click)="changeTime(1)"><mat-icon> add </mat-icon></button>
       </div>
   
     </div>
 
-    <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8" >
+    <table mat-table [dataSource]="kojeData" matSort  class="mat-elevation-z8" >
         <!-- Name Column -->
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name</th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.kojeName}} </td>
           </ng-container>
         
           <!-- Version Column -->
@@ -46,19 +46,19 @@
           <!-- State Column -->
           <ng-container matColumnDef="remark">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by state"> Remark </th>
-            <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.remarks}} </td>
           </ng-container>
         
           <!-- Uptime Column -->
           <ng-container matColumnDef="currentlyReservedBy">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by uptime"> Currently Reserved by </th>
-            <td mat-cell *matCellDef="let element"> {{element.owner}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.currentUser}} </td>
           </ng-container>
 
            <!-- Owner Column -->
            <ng-container matColumnDef="reservedTill">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by owner"> Reserved till </th>
-            <td mat-cell *matCellDef="let element"> {{element.reservedTill | date : 'dd.MM. HH:mm' : selectedTimeZone.difference}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.endReservation | date : 'dd.MM. HH:mm' : selectedTimeZone.difference}} </td>
           </ng-container>
 
            <!-- Functions Column -->

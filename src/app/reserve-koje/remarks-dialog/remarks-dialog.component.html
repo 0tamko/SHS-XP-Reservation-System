@@ -1,9 +1,9 @@
-<h2 mat-dialog-title>{{kojeDetails.name}} remarks</h2>
+<h2 mat-dialog-title>{{kojeDetails.kojeName}} remarks</h2>
 
 <div class="content">
 
-    <div *ngIf="(kojeDetails.remark != null && kojeDetails.remark != ''); else elseBlock">
-        <p class="remarks">Remark: {{kojeDetails.remark}}</p>
+    <div *ngIf="(kojeDetails.remarks != null && kojeDetails.remarks != ''); else elseBlock">
+        <p class="remarks">Remark: {{kojeDetails.remarks}}</p>
     </div>
 
     <ng-template #elseBlock>

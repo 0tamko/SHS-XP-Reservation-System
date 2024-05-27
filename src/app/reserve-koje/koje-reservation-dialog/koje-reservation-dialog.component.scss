@@ -18,12 +18,12 @@
     }
 
     .checkboxes{
-
+        
         input[type=checkbox]{
             width: 1rem;
             height: 1rem;
             margin: 0.5rem 0;
-
+            cursor: pointer;
 
             &:checked{
                 accent-color: #ec6602;

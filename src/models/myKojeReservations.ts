@@ -1,10 +1,11 @@
 export class myKojeReservations{
     constructor (
-        public reservationIndex:number,
-        public koje: string,
-        public owner: string,
-        public start: string,
-        public end: string,
+        public reservationId:string,
+        public kojeName: string,
+        public userName: string,
+        public userMail: string,
+        public startReservation: string,
+        public endReservation: string,
     ){}
 }
   

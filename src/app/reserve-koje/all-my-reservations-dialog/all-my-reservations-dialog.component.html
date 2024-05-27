@@ -11,18 +11,18 @@
 
                 <ng-container matColumnDef="koje">
                     <th mat-header-cell *matHeaderCellDef> Koje </th>
-                    <td mat-cell *matCellDef="let element">{{element.koje}}</td>
+                    <td mat-cell *matCellDef="let element">{{element.koje.kojeName}}</td>
                 </ng-container>
             
                 <ng-container matColumnDef="start">
                     <th mat-header-cell *matHeaderCellDef> Start Time </th>
-                        <td mat-cell *matCellDef="let element">{{element.start | date : 'dd.MM.yyyy HH:mm' : selectedTimeZone.difference}}</td>
+                        <td mat-cell *matCellDef="let element">{{element.startReservation | date : 'dd.MM.yyyy HH:mm' : selectedTimeZone.difference}}</td>
                 </ng-container>
             
 
                 <ng-container matColumnDef="end">
                     <th mat-header-cell *matHeaderCellDef> End Time </th>
-                    <td mat-cell *matCellDef="let element">{{element.end | date : 'dd.MM.yyyy HH:mm' : selectedTimeZone.difference}}</td>
+                    <td mat-cell *matCellDef="let element">{{element.endReservation | date : 'dd.MM.yyyy HH:mm' : selectedTimeZone.difference}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="delete">

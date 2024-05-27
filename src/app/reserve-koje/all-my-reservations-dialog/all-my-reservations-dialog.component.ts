@@ -3,13 +3,8 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { DeleteAllReservationsDialogComponent } from './delete-all-reservations-dialog/delete-all-reservations-dialog.component';
 import { MY_KOJE_RESERVATIONS } from 'src/shared/my-koje-reservations';
 import { MessageService } from 'src/shared/message.service';
+import { KojeService } from 'src/shared/koje.service';
 import { myKojeReservations } from 'src/models/myKojeReservations';
-
-export interface ReservationDetails{
-  koje: string | null;
-  start: string | null;
-  end: string | null;
-}
 
 @Component({
   selector: 'app-all-my-reservations-dialog',
@@ -23,41 +18,44 @@ export class AllMyReservationsDialogComponent {
     public dialogRef: MatDialogRef<AllMyReservationsDialogComponent>,
     private dialog: MatDialog,
     private messageService: MessageService,
+    private kojeService: KojeService,
 
     @Inject (MAT_DIALOG_DATA) public data: any,
   ) {}
-    
-    allMyReservations = MY_KOJE_RESERVATIONS;
-    selectedTimeZone = this.data.timeZone;
 
+    ngOnInit(): void {
+      this.getAllUserReservations();
+    }
+    
+    allMyReservations: myKojeReservations[] = [];
+    selectedTimeZone = this.data.timeZone;
     displayedColumns: string[] = ['koje', 'start', 'end', 'delete'];
     
+    getAllUserReservations(){
+      this.kojeService.getAllUserReservations('Michalekova, Lucia').subscribe(allUserReservations => {
+        this.allMyReservations = allUserReservations;
+        console.log(this.allMyReservations);
+      });
+    
+    }
+
     onRemoveAllClick(): void {
       const dialogRef = this.dialog.open(DeleteAllReservationsDialogComponent);
       
-      dialogRef.afterClosed().subscribe((deleteAllReservations: boolean) => {
+      dialogRef.afterClosed().subscribe(deleteAllReservations => {
         if(deleteAllReservations) {
-          let numberOfReservations = this.allMyReservations.length;
-          for ( let i = 0; i < numberOfReservations; i++){
-            MY_KOJE_RESERVATIONS.splice(0,1);
-          } 
-          this.messageService.message("All reservations for user 'User's name' were removed.")
+          this.kojeService.deleteAllUserReservations('Michalekova, Lucia').subscribe(result => {
+            this.getAllUserReservations();
+            this.messageService.message("All reservations for user 'User's name' were removed.");
+          });
         }
       });
     }
-
+    
     deleteReservation(element:any){
-      let index = element.reservationIndex;
-      MY_KOJE_RESERVATIONS.splice(index,1);
-      this.allMyReservations = [...MY_KOJE_RESERVATIONS];
-  
-      let numberOfReservations = this.allMyReservations.length;
-  
-      for (let i = 0; i < numberOfReservations; i++){
-        MY_KOJE_RESERVATIONS[i].reservationIndex = i;
-      }
-  
-      this.allMyReservations = [...MY_KOJE_RESERVATIONS];
+      this.kojeService.deleteReservation(element.kojeReservationId).subscribe(result =>{
+        this.getAllUserReservations();
+      });
     }
 
     onCloseClick(): void {
