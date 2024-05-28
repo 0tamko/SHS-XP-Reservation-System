@@ -114,8 +114,8 @@ export class KojeReservationDialogComponent implements OnInit{
           (result.message != null) ? this.message.message("WARNING: " + result.message) : this.message.message("Reservation for " + this.kojeName + " failed");
         }
       });
+      this.getKojeReservations();
     }
-    this.getKojeReservations();
   }
 
   onCloseClick(){
