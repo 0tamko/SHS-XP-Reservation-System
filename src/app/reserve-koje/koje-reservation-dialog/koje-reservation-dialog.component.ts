@@ -101,7 +101,6 @@ export class KojeReservationDialogComponent implements OnInit{
         else{
           (result.message != null) ? this.message.message(result.message) : this.message.message("Reservation for " + this.kojeName + " failed");
         }
-        this.getKojeReservations();
       });
     }
 
@@ -114,9 +113,9 @@ export class KojeReservationDialogComponent implements OnInit{
         else{
           (result.message != null) ? this.message.message("WARNING: " + result.message) : this.message.message("Reservation for " + this.kojeName + " failed");
         }
-        this.getKojeReservations();
       });
     }
+    this.getKojeReservations();
   }
 
   onCloseClick(){

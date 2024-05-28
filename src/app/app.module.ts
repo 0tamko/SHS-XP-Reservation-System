@@ -35,8 +35,7 @@ import { RemarksDialogComponent } from './reserve-koje/remarks-dialog/remarks-di
 import { DeleteAllReservationsDialogComponent } from './reserve-koje/all-my-reservations-dialog/delete-all-reservations-dialog/delete-all-reservations-dialog.component';
 import { AllMyVmReservationsDialogComponent } from './reserve-vm/all-my-vm-reservations-dialog/all-my-vm-reservations-dialog.component';
 import { DeleteAllMyVmReservationsDialogComponent } from './reserve-vm/all-my-vm-reservations-dialog/delete-all-my-vm-reservations-dialog/delete-all-my-vm-reservations-dialog.component';
-import { UnreserveVmDialogComponent } from './my-virtual-machines/unreserve-vm-dialog/unreserve-vm-dialog.component';
-import { PowerOffDialogComponent } from './my-virtual-machines/power-off-dialog/power-off-dialog.component';
+import { ConfirmationDialogComponent } from './my-virtual-machines/confirmation-dialog/confirmation-dialog.component';
 import { SignInRedirectCallbackComponent } from './home/signin-redirect-callback.component';
 import { SignOutRedirectCallbackComponent } from './home/signout-redirect-callback.component';
 
@@ -56,8 +55,7 @@ import { SignOutRedirectCallbackComponent } from './home/signout-redirect-callba
     DeleteAllReservationsDialogComponent,
     AllMyVmReservationsDialogComponent,
     DeleteAllMyVmReservationsDialogComponent,
-    PowerOffDialogComponent,
-    UnreserveVmDialogComponent,
+    ConfirmationDialogComponent,
     SignInRedirectCallbackComponent,
     SignOutRedirectCallbackComponent
   ],

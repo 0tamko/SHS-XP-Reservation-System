@@ -25,8 +25,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  name: string = '';
-
   login(){
     this._authService.login();
  }

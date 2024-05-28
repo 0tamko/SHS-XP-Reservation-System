@@ -37,8 +37,8 @@
                     <div class="function-buttons">
                         <button (click)="startStopVM(element)" *ngIf="element.state == 'Running'" matTooltip="Stop this VM."><mat-icon>stop</mat-icon></button>
                         <button (click)="startStopVM(element)" *ngIf="element.state == 'Off'" matTooltip="Start this VM." ><mat-icon>play_arrow</mat-icon></button>
-                        <button (click)="powerOff(element)" [disabled]="element.state == 'Off'" matTooltip="Power off this VM." [matTooltipDisabled]="element.state == 'Off'"><mat-icon>power_settings_new</mat-icon></button>
-                        <button (click)="unreserveVM(element)" matTooltip="Unreserve this VM."><mat-icon>undo</mat-icon></button>
+                        <button (click)="openConfirmationDialog(element, 'powerOff')" [disabled]="element.state == 'Off'" matTooltip="Power off this VM." [matTooltipDisabled]="element.state == 'Off'"><mat-icon>power_settings_new</mat-icon></button>
+                        <button (click)="openConfirmationDialog(element, 'unreserve')" matTooltip="Unreserve this VM."><mat-icon>undo</mat-icon></button>
                         <button (click)="changeLock(element)" *ngIf="element.isLocked" matTooltip="Unlock this VM. If it is locked, daily deployments are skipped."> <mat-icon>lock</mat-icon></button>
                         <button (click)="changeLock(element)" *ngIf="!(element.isLocked)" matTooltip="Lock this VM. If it is locked, daily deployments are skipped."><mat-icon>lock_open</mat-icon></button>    
                         <button (click)="openInformationDialog(element)" matTooltip="Information about remote connection to this VM."> <mat-icon>info</mat-icon></button>
